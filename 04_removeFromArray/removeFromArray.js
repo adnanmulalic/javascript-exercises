@@ -10,18 +10,26 @@
 
 const removeFromArray = function(firstArray, ...args) {
         let newArray = [];
-        const argsArray = args;
+        const argsArray = Array.from(args);
         firstArray.forEach(element => {
+            console.log(firstArray.indexOf(element));
             for (let i = 0; i < argsArray.length; i++) {
                 console.log(argsArray[i]);
-                newArray.push(element);
                 if (element === argsArray[i]) {
-                    newArray.pop(element);
+                    newArray.push(element);
                 }
             }
         });
     console.log(newArray);
-    
+    let finalArray = [];
+    for (let i = 0; i < firstArray.length; i++) {
+        for (let y = 0; y < newArray.length; y++) {
+            if (firstArray[i] != newArray[y]) {
+                finalArray.push(firstArray[i]);
+            }
+        }       
+    }
+    return finalArray;
 };
 
 // Do not edit below this line
