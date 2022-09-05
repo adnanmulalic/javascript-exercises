@@ -1,21 +1,26 @@
 const findTheOldest = function(people) {
     const ageNameArray = people.map((person) => {
+        if (person.yearOfDeath === undefined) {
+            person.yearOfDeath = new Date().getFullYear();
+        }
         return {
             name: person.name,
             age: person.yearOfDeath - person.yearOfBirth,
         };
     });
+    console.table(ageNameArray);
     let currentOldest = ageNameArray[0].age;
-    const oldestPerson = ageNameArray.filter((person) => {
+    let oldestPersonObj = {};
+    ageNameArray.filter((person) => {
         if (person.age > currentOldest) {
             currentOldest = person.age;
-            return person;
+            oldestPersonObj[0] = person;
         }
     })
-    if (oldestPerson[0] === undefined) {
+    if (oldestPersonObj[0] === undefined) {
         return ageNameArray[0];
     } else {    
-    return oldestPerson[0];
+    return oldestPersonObj[0];
     }
 };
 
